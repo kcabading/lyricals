@@ -1,13 +1,15 @@
 {
-  "albums": [
-    {"id": 1, "name": "Album1"},
-    {"id": 2, "name": "Album2"}
-  ],
-  "artists": [
-    { "id": 3, "name": "Eminem" }
-  ],
-  "titles": [
-    { "id": 4, "name": "Love the way you lie", "artist": "Eminem" },
-    { "id": 5, "name": "Rap God", "artist": "Eminem" }
-  ]
+  "default": {
+    "albums": [
+      {"id": 1, "name": "Album1"},
+      {"id": 2, "name": "Album2"}
+    ],
+    "artists": [
+      { "id": 3, "name": "Eminem" }
+    ],
+    "songs": [
+      { "id": 4, "name": "Love the way you lie", "artist": "Eminem", "album": "123" },
+      { "id": 5, "name": "Rap God", "artist": "Eminem", "album": "123" }
+    ]
+  }
 }

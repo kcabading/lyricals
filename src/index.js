@@ -5,11 +5,12 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Store from './store'
+import {Provider} from 'react-redux'
 
-const render = () => {
-    const initState = Store.getState();
-    ReactDOM.render(<MuiThemeProvider><App {...initState}/></MuiThemeProvider>, document.getElementById('root'));
-}
-render();
-Store.subscribe(render);
+ReactDOM.render(
+    <Provider store={Store}>
+        <MuiThemeProvider><App /></MuiThemeProvider>
+    </Provider>, 
+    document.getElementById('root'));
+
 registerServiceWorker();
