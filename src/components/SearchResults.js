@@ -4,7 +4,7 @@ import SongListItem from './SongListItem.js'
 import ArtistListItem from './SongListItem.js'
 import AlbumListItem from './SongListItem.js'
 import {connect} from 'react-redux';
-import {fetchDefault} from '../reducers/search-results'
+import {fetchDefault} from '../reducers/search'
 
 
 class SearchResults extends Component {
@@ -15,7 +15,7 @@ class SearchResults extends Component {
     }
 
     render() {
-        console.log("rendering results");
+        
         let ArtistItemList = this.props.searchResults.artists.map((song, index) => {
             return (
                 <ArtistListItem {...song} key={index}/>
@@ -32,23 +32,23 @@ class SearchResults extends Component {
             );
         });
         return (
-            <div>
+            <div className="SearchResults">
                 <h3>Search Results</h3>
                 <Divider />
                 <div style={{textAlign:"left",padding:"20px"}}>
                     <div className="artist-results">
-                        <h4>Artists</h4>
-                        {ArtistItemList}
+                        <h4 className="category">Artists</h4>
+                        { (this.props.searchResults.artists.length) ? ArtistItemList : "Nothing Found"}
                     </div>
                     <Divider />
                     <div className="artist-results">
-                        <h4>Albums</h4>
-                        {AlbumItemList}
+                        <h4 className="category">Albums</h4>
+                        { (this.props.searchResults.albums.length) ? AlbumItemList : "Nothing Found"}                        
                     </div>
                     <Divider />
                     <div className="artist-results">
-                        <h4>Songs</h4>   
-                        {SongItemList} 
+                        <h4 className="category">Songs</h4>                        
+                        { (this.props.searchResults.songs.length) ? SongItemList : "Nothing Found"}
                     </div>
                 </div>
             </div>

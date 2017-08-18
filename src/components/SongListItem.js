@@ -2,8 +2,8 @@ import React from 'react';
 import {Card} from 'material-ui/Card';
 
 export default (props) => (    
-  <Card>
-    <h4>{props.name}</h4>
-    <p><a href={props.link}>{props.link}</a></p>        
+  <Card style={{padding:"5px"}}>
+    <h4 style={{margin:" 5px"}}>{props.name}</h4>
+    <p><a href={props.link}>{props.link}s</a></p>        
   </Card>    
 )

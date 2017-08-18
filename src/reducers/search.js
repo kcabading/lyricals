@@ -15,7 +15,7 @@ const initState = {
 const UPDATE_SEARCH = "UPDATE_SEARCH"
 const LOAD_SEARCH_RESULTS = "LOAD_SEARCH_RESULTS"
 
-export const changeSearch = (val) => ({type: UPDATE_SEARCH, payload: val});
+export const changeSearch = (val) => ({type: UPDATE_SEARCH, payload: val})
 
 export const loadSearchResults = (results) => ({type: LOAD_SEARCH_RESULTS, payload: results})
 
@@ -37,7 +37,7 @@ export const fetchSearch = (term) => {
 export default (state = initState, action) => {
     switch (action.type) {        
         case UPDATE_SEARCH:
-            return {...state, searchInput: action.payload}
+            return {...state, searchInput: action.payload, initSearch: action.payload ? true : false  }
         case LOAD_SEARCH_RESULTS:
             return {...state, searchResults: action.payload}
         default:

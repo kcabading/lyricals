@@ -1,8 +1,8 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import {connect} from 'react-redux'
-import {changeSearch} from '../reducers/search-results'
-import {fetchSearch} from '../reducers/search-results'
+import {changeSearch} from '../reducers/search'
+import {fetchSearch} from '../reducers/search'
 
 const SearchForm = (props) => {
   console.log("rendering form");

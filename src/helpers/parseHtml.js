@@ -29,6 +29,9 @@ export default (html) => {
                         name: $(item).text(),
                         link: $(item).attr("href"),
                     })
+                    break;
+                default:
+                    break;
             }
         })
     })
