@@ -8,23 +8,26 @@ export default (html) => {
         songs: []
     }    
     let objPanels = $(html).find('div.panel')
-    objPanels.each((panel_index, element) => {        
+    objPanels.each((panel_index, element) => {
+        
+        let group = $(element).find('span.text-lowercase').text();
+
         var objRows = $(element).find('table tr a')
         $(objRows).each((index, item) => {            
-            switch(panel_index) {
-                case 0:
+            switch(group) {
+                case "Artists":
                     objResults.artists.push({
                         name: $(item).text(),
                         link: $(item).attr("href"),
                     })
                     break;
-                case 1:
+                case "Albums":
                     objResults.albums.push({
                         name: $(item).text(),
                         link: $(item).attr("href"),
                     })
                     break;
-                case 2:
+                case "Songs":
                     objResults.songs.push({
                         name: $(item).text(),
                         link: $(item).attr("href"),

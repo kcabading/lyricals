@@ -1,15 +1,13 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import {connect} from 'react-redux'
-import {changeSearch} from '../reducers/search'
 import {fetchSearch} from '../reducers/search'
 
 const SearchForm = (props) => {
   console.log("rendering form");
-  const {searchInput, changeSearch, fetchSearch} = props
+  const {searchInput,fetchSearch} = props
   const handleInputChange = (evt) => {
-    const val = evt.target.value
-    changeSearch(val)
+    const val = evt.target.value    
     fetchSearch(val)
   }
   return (
@@ -26,5 +24,5 @@ const SearchForm = (props) => {
 
 export default connect(
   (state) => ({searchInput: state.searchInput}),
-  {changeSearch, fetchSearch}  
+  {fetchSearch}  
 )(SearchForm)

@@ -4,16 +4,13 @@ import SongListItem from './SongListItem.js'
 import ArtistListItem from './SongListItem.js'
 import AlbumListItem from './SongListItem.js'
 import {connect} from 'react-redux';
-import {fetchDefault} from '../reducers/search'
-
+import {fetchLyrics, fetchDefault} from '../reducers/search'
 
 class SearchResults extends Component {
-
+    
     componentDidMount() {
-
         this.props.fetchDefault()
     }
-
     render() {
         
         let ArtistItemList = this.props.searchResults.artists.map((song, index) => {
@@ -28,7 +25,7 @@ class SearchResults extends Component {
         });
         let SongItemList = this.props.searchResults.songs.map((song, index) => {
             return (
-                <SongListItem {...song} key={index}/>
+                <SongListItem {...song} key={index} fetchLyrics={this.props.fetchLyrics}/>
             );
         });
         return (
@@ -57,8 +54,8 @@ class SearchResults extends Component {
 }
 
 export default connect(
-    (state) => ({searchResults: state.searchResults}),
-    {fetchDefault}
+    (state) => ({searchResults: state.search.searchResults}),
+    {fetchDefault,fetchLyrics}    
 )(SearchResults)
 
 
