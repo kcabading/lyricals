@@ -11,13 +11,13 @@ const initState = {
 const FETCH_LYRICS = "FETCH_LYRICS"
 const LYRICS_FETCHED = "LYRICS_FETCHED"
 // async function to get lyrics
-export const fetchLyrics = (url) => {
-    console.log('fetching lyrics');
+export const fetchLyrics = (url) => {    
+    console.log('GETTING LYRICS');
     return (dispatch) => {
         dispatch({type: FETCH_LYRICS})
         getLyrics(url)
-            // .then(results => dispatch(loadLyrics(parseLyrics(results))))
-            .then(results => dispatch(loadLyrics(parseLyrics(results))));
+            .then(results => dispatch(loadLyrics(parseLyrics(results))))
+            // .then(results => console.log("RESULTS", results));
     }
 }
 // load lyrics action
@@ -31,7 +31,7 @@ export default (state = initState, action) => {
                 initLoadingLyrics: !state.initLoadingLyrics,
                 lyricsLoaded: false,
             }
-        case LYRICS_FETCHED:
+        case LYRICS_FETCHED:            
             return {
                 ...state,                 
                 initLoadingLyrics: false,

@@ -1,6 +1,5 @@
-import {getDefault, searchTerm, getLyrics} from '../lib/lyricsServices'
+import {getDefault, searchTerm} from '../lib/lyricsServices'
 import parseHtml from '../helpers/parseHtml'
-import parseLyrics from '../helpers/parseLyrics'
 
 const initState = {
     searchInput: "",
@@ -20,8 +19,6 @@ const initState = {
 const UPDATE_SEARCH = "UPDATE_SEARCH"
 const LOAD_SEARCH_RESULTS = "LOAD_SEARCH_RESULTS"
 const TOGGLE_MAIN_DRAWER = "TOGGLE_MAIN_DRAWER"
-const FETCH_LYRICS = "FETCH_LYRICS"
-const LYRICS_FETCHED = "LYRICS_FETCHED"
 
 // global
 export const toggleDrawer = () => ({type: TOGGLE_MAIN_DRAWER})
@@ -36,27 +33,13 @@ export const fetchDefault = () => {
     }
 }
 export const fetchSearch = (term) => {
-    console.log('TERM', term);       
+    console.log('TERM', term);  
     return (dispatch) => {
         dispatch({type: UPDATE_SEARCH, payload: term})
         searchTerm(term)
             .then(results => dispatch(loadSearchResults(parseHtml(results))))
     }
 }
-
-
-// songs page
-export const fetchLyrics = (url) => {
-    console.log('fetching lyrics');
-    return (dispatch) => {
-        dispatch({type: FETCH_LYRICS})
-        getLyrics(url)
-            // .then(results => dispatch(loadLyrics(parseLyrics(results))))
-            .then(results => dispatch(loadLyrics(parseLyrics(results))));
-    }
-}
-
-export const loadLyrics = (lyrics) => ({type: LYRICS_FETCHED, payload: lyrics})
 
 export default (state = initState, action) => {    
     switch (action.type) {        
@@ -67,20 +50,6 @@ export default (state = initState, action) => {
         case TOGGLE_MAIN_DRAWER:
             console.log('toggle main drawer');
             return {...state, openDrawer: !state.openDrawer}
-        case FETCH_LYRICS:
-            return {
-                ...state, 
-                initLoadingLyrics: !state.initLoadingLyrics,
-                lyricsLoaded: false,
-            }
-        case LYRICS_FETCHED:
-            return {
-                ...state,                 
-                initLoadingLyrics: false,
-                lyricsLoaded: true,
-                lyrics: action.payload.lyrics,
-                title: action.payload.title
-            }
         default:
             return state;            
     }

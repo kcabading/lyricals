@@ -11,7 +11,7 @@ export default () => (
       <Route exact path="/" component={HomePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/saved" component={SavedPage} />
-       <Route path="/lyrics" component={LyricsPage} /> 
+      <Route path="/lyrics" component={LyricsPage} />
     </Switch>  
   </div>
 );
