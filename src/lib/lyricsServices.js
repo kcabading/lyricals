@@ -10,13 +10,13 @@ var myInit = {
 
 export const searchTerm = (term) => {
     console.log('searching for' + term);
-    return fetch(`/search?q=` + term, myInit)
+    return fetch(`/api/search?q=` + term, myInit)
         .then(res => res.text())
 }
 
 export const getLyrics = (url) => {
     console.log('getting lyrics for: ' + url);
-    return fetch(`/lyrics?p=` + encodeURI(url))
+    return fetch(`/api/lyrics?p=` + encodeURI(url))
         .then(res => res.text())
 }
 
@@ -28,8 +28,7 @@ export const getDefault = () => {
 
 export const getSavedData = () => {
 
-    return fetch(`/saved`)
+    return fetch(`/api/saved`)
         .then(res => res.json())
 
 }
-
