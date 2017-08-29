@@ -3,9 +3,7 @@ import {getSavedData} from '../lib/lyricsServices'
 const initState = {
     loading: false,
     data: {
-        artists: [],
-        albums: [],
-        titles: []
+        artists: []        
     }
 }
 

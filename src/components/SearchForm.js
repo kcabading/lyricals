@@ -1,25 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import {connect} from 'react-redux'
 import {fetchSearch} from '../reducers/search'
 
-const SearchForm = (props) => {
-  console.log("rendering form");
-  const {searchInput,fetchSearch} = props
-  const handleInputChange = (evt) => {
-    const val = evt.target.value    
-    fetchSearch(val)
+
+class SearchForm extends Component {  
+  onFormSubmit(evt) {
+    // prevent default
+    evt.preventDefault();        
+    // if search input not empty
+    if (this.searchInput.input.value) {      
+      this.props.fetchSearch(this.searchInput.input.value)
+    }    
   }
-  return (
-    <div>        
-      <TextField
-        hintText="Search for title, album and artist"
-        floatingLabelText="Start here"
-        value={searchInput}
-        onChange={handleInputChange}
-      />
-    </div>      
-  )
+  render() {
+    return(
+      <div>
+        <form onSubmit={this.onFormSubmit.bind(this)}>
+          <TextField        
+            floatingLabelText="Search for title, album and artist"           
+            ref={el => this.searchInput = el}
+          />
+        </form>
+      </div>
+    )
+  }
 }
 
 export default connect(

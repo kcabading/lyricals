@@ -1,12 +1,13 @@
 
+import EscapeToJson from '../helpers/escapeStringToJson'
+
 const API = "http://localhost:9000/api";
 
 var myInit = { 
     method: 'GET',
     headers: new Headers({ 
         "Access-Control-Allow-Origin": '*', 
-        "Content-type": "text/html",
-        "mode": "cors"
+        "Content-type": "text/json",
     })     
 }
 
@@ -20,6 +21,23 @@ export const getLyrics = (url) => {
     console.log('getting lyrics for: ' + url);
     return fetch(`${API}/lyrics?p=` + encodeURI(url))
         .then(res => res.text())
+}
+
+export const saveLyrics = (data) => {
+    
+    let strPostData = EscapeToJson(data);    
+    console.log('saving lyrics');
+    console.log(strPostData);    
+    console.log(typeof strPostData);
+
+    return fetch(`${API}/lyrics`, { 
+                method: 'POST',
+                body: strPostData,
+                headers: new Headers({                     
+                    "Content-type": "application/json",
+                })     
+            })
+            .then(res => res.text())
 }
 
 export const getDefault = () => {

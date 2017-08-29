@@ -5,27 +5,36 @@
     "option2": true
   },
   "data": {
-    "albums": [
-      {"id": 1, "name": "Album1"},
-      {"id": 2, "name": "Album2"}
-    ],
     "artists": [
-      { "id": 3, "name": "Eminem" }
-    ],
-    "songs": [
       { 
-        "id": 4, 
-        "name": "Love the way you lie", 
-        "artist": "Eminem", "album": "123",
-        "lyrics" : "123"
-      },        
-      { 
-        "id": 5, 
-        "name": "Rap God", 
-        "artist": "Eminem", 
-        "album": "123",
-        "lyrics" : "456"
+        "id": 3, 
+        "name": "Eminem",
+        "albums" : [
+          {
+            "id": 1, 
+            "name": "Album1",
+            "songs": [
+              { 
+                "id": 4, 
+                "name": "Love the way you lie", 
+                "artist": "Eminem", "album": "123",
+                "lyrics" : "123"
+              },
+              { 
+                "id": 5, 
+                "name": "Rap God", 
+                "artist": "Eminem", 
+                "album": "123",
+                "lyrics" : "456"
+              }
+            ]
+          },
+          {
+            "id": 2, 
+            "name": "Album2"
+          }
+        ]
       }
-    ]
+    ]    
   }
 }

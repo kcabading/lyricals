@@ -1,45 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const request = require('request-promise')
-
-
 const AZLYRICS = "https://www.azlyrics.com"
 const AZSEARCH = "https://search.azlyrics.com/search.php"
+const DATA = require('../../db.json');
+const path = require('path');
+const fs = require('fs');
 
 // GET saved data
-router.get('/saved', function(req, res, next) {
+router.get('/saved', function(req, res, next) {    
     // return json data
-    res.json({
-        "name": "Kristian Cabading",
-        "settings": {
-            "option1": true,
-            "option2": true
-        },
-        "data": {
-            "albums": [
-            {"id": 1, "name": "Album1"},
-            {"id": 2, "name": "Album2"}
-            ],
-            "artists": [
-            { "id": 3, "name": "Eminem" }
-            ],
-            "songs": [
-            { 
-                "id": 4, 
-                "title": "Love the way you lie", 
-                "artist": "Eminem", "album": "123",
-                "lyrics" : "123"
-            },        
-            { 
-                "id": 5, 
-                "title": "Rap God", 
-                "artist": "Eminem", 
-                "album": "123",
-                "lyrics" : "456"
-            }
-            ]
-        }
-    })
+    res.json(DATA)
 });
 
 /* GET search azlyrics. */
@@ -51,7 +22,7 @@ router.get('/search', function(req, res, next) {
         qs: {
             q: req.param('q')
         }
-    }    
+    }        
     // start request
     request(options)  
         .then( function (response) {            
@@ -80,5 +51,20 @@ router.get('/lyrics', function(req, res, next) {
             // Something bad happened, handle the error
         })
 });
+
+
+router.post('/lyrics', function(req, res, next){
+    DATA.name = 'Irene Dela Cruz';
+    console.log(DATA);
+    fs.writeFile('db.json', JSON.stringify(DATA), 'utf8', function(err, data){
+        console.log('DATA SAVED');
+    });
+
+    // console.log(typeof req.body);
+    // console.log('SAVING LYRICS');    
+    // console.log("title", req.body.title)
+    // console.log("artist", req.body.artist)
+    // console.log("albums", req.body.albums)
+})
 
 module.exports = router;

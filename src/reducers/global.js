@@ -1,6 +1,12 @@
 
-const initState = {    
-    openDrawer: false    
+const initState = {
+    name: "Kristian Cabading",
+    settings: {
+        option1: true,
+        option2: true
+    },
+    openDrawer: false,
+    data: {}
 }
 const TOGGLE_MAIN_DRAWER = "TOGGLE_MAIN_DRAWER"
 // global

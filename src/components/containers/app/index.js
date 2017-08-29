@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import {toggleDrawer} from '../../../reducers/global'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from '../../../components/common/header'
+import Footer from '../../../components/common/footer'
 import { withRouter } from 'react-router'
+
 
 class App extends Component {    
   render() {    
@@ -12,8 +14,9 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Header {...this.props} />
-          {this.props.children}
-        </div>
+          {this.props.children}          
+          <Footer />
+        </div>        
       </MuiThemeProvider>
     );
   }

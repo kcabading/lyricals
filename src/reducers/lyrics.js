@@ -1,10 +1,12 @@
-import {getLyrics} from '../lib/lyricsServices'
+import {getLyrics,saveLyrics} from '../lib/lyricsServices'
 import parseLyrics from '../helpers/parseLyrics'
 
 const initState = {
     initLoadingLyrics: false,
-    lyricsLoaded: false,
+    lyricsLoaded: false,        
     title: "",
+    artist: "",
+    albums: [],
     lyrics: ""
 }
 
@@ -23,6 +25,19 @@ export const fetchLyrics = (url) => {
 // load lyrics action
 export const loadLyrics = (lyrics) => ({type: LYRICS_FETCHED, payload: lyrics})
 
+
+// async function to save lyrics
+export const saveFetchedLyrics = (data) => {    
+    console.log('SAVING LYRICS');
+    console.log(data)
+    return (dispatch) => {        
+        saveLyrics(data)
+            .then(results => console.log(results))
+            // .then(results => console.log("RESULTS", results));
+    }
+}
+
+
 export default (state = initState, action) => {    
     switch (action.type) {        
         case FETCH_LYRICS:
@@ -37,7 +52,9 @@ export default (state = initState, action) => {
                 initLoadingLyrics: false,
                 lyricsLoaded: true,
                 lyrics: action.payload.lyrics,
-                title: action.payload.title
+                albums: action.payload.albums,
+                title: action.payload.title,
+                artist: action.payload.artist
             }
         default:
             return state;            
