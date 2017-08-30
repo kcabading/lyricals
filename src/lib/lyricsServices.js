@@ -28,7 +28,7 @@ export const saveLyrics = (data) => {
     console.log(strPostData);    
     console.log(typeof strPostData);
 
-    return fetch(`${API}/lyrics`, { 
+    return fetch(`/api/lyrics`, { 
                 method: 'POST',
                 body: strPostData,
                 headers: new Headers({                     

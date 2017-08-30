@@ -1,40 +1,41 @@
 {
-  "name": "Kristian Cabading",
+  "name": "Irene Cabading",
   "settings": {
     "option1": true,
     "option2": true
   },
   "data": {
     "artists": [
-      { 
-        "id": 3, 
+      {
+        "id": 1,
         "name": "Eminem",
-        "albums" : [
+        "albums": [
           {
-            "id": 1, 
+            "id": 1,
             "name": "Album1",
             "songs": [
-              { 
-                "id": 4, 
-                "name": "Love the way you lie", 
-                "artist": "Eminem", "album": "123",
-                "lyrics" : "123"
-              },
-              { 
-                "id": 5, 
-                "name": "Rap God", 
-                "artist": "Eminem", 
+              {
+                "id": 4,
+                "name": "Love the way you lie",
+                "artist": "Eminem",
                 "album": "123",
-                "lyrics" : "456"
+                "lyrics": "123"
+              },
+              {
+                "id": 5,
+                "name": "Rap God",
+                "artist": "Eminem",
+                "album": "123",
+                "lyrics": "456"
               }
             ]
           },
           {
-            "id": 2, 
+            "id": 2,
             "name": "Album2"
           }
         ]
       }
-    ]    
+    ]
   }
 }

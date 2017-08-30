@@ -53,18 +53,34 @@ router.get('/lyrics', function(req, res, next) {
 });
 
 
-router.post('/lyrics', function(req, res, next){
-    DATA.name = 'Irene Dela Cruz';
-    console.log(DATA);
-    fs.writeFile('db.json', JSON.stringify(DATA), 'utf8', function(err, data){
-        console.log('DATA SAVED');
-    });
+router.post('/lyrics', function(req, res, next){   
+    
+    let savPath = "db.json";
+
+    // fs.readFile(savPath, 'utf8', function (err, data) {
+    //     if (err) throw err;
+    //     let objData = JSON.parse(data);      
+        DATA.name = "Irene Cabading";
+        let strNewData = JSON.stringify(DATA,null, 2);
+
+        console.log(strNewData);
+        //Do your processing, MD5, send a satellite to the moon, etc.
+        fs.writeFile (savPath, strNewData, function(err) {
+            if (err) throw err;
+            console.log('complete');
+        });
+    // });
+
+    // fs.writeFile('db.json', JSON.stringify(DATA), 'utf8', function(err, data){
+    //     console.log('DATA SAVED');
+    // });
 
     // console.log(typeof req.body);
     // console.log('SAVING LYRICS');    
-    // console.log("title", req.body.title)
-    // console.log("artist", req.body.artist)
-    // console.log("albums", req.body.albums)
+    console.log("title", req.body.title)
+    console.log("artist", req.body.artist)
+    console.log("albums", req.body.albums)
+    console.log("albums", req.body.lyrics)
 })
 
 module.exports = router;
