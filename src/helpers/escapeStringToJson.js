@@ -1,5 +1,5 @@
 
-export default (string) => {
+module.exports = (string) => {
     var myJSONString = JSON.stringify(string);
     return myJSONString.replace(/\\n/g, "\\n")
                                         .replace(/\\'/g, "\\'")

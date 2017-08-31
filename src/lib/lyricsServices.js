@@ -1,5 +1,5 @@
 
-import EscapeToJson from '../helpers/escapeStringToJson'
+const EscapeToJson = require('../helpers/escapeStringToJson')
 
 var myInit = { 
     method: 'GET',
