@@ -14,9 +14,8 @@ export default (html) => {
         arAlbums.push($(album).text());
     });
 
-    console.log(strArtistName);
     return {
-        title: strSongTitle,
+        name: strSongTitle,
         albums: arAlbums,
         artist: strArtistName,
         lyrics: strLyricsHtml

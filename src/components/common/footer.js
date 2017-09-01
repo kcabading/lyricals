@@ -3,10 +3,14 @@ import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+
 
 const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+// const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+
 const nearbyIcon = <IconLocationOn />;
+const favoritesIcon = <ActionGrade />
 
 /**
  * A simple example of `BottomNavigation`, with three labels and icons

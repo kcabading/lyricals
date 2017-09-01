@@ -7,14 +7,12 @@ import {connect} from 'react-redux';
 import {fetchDefault} from '../reducers/search'
 import {fetchLyrics} from '../reducers/lyrics'
 
-class SearchResults extends Component {
+class SearchResults extends Component {    
     
-    componentDidMount() {
-        this.props.fetchDefault()
-    }
-    render() {
+    render() {              
         
         let ArtistItemList = this.props.searchResults.artists.map((song, index) => {
+
             return (
                 <ArtistListItem {...song} key={index}/>
             );
@@ -58,36 +56,3 @@ export default connect(
     (state) => ({searchResults: state.search.searchResults}),
     {fetchDefault,fetchLyrics}    
 )(SearchResults)
-
-
-// export default class SearchResults extends Component {    
-
-//     render() {
-//         console.log("rendering results");
-//         let SongItemList = this.props.results.map((song, index) => {
-//             return (
-//                 <SongListItem {...song} key={index}/>
-//             );
-//         });        
-//         return (
-//             <div>
-//                 <h3>Search Results</h3>
-//                 <Divider />
-//                 <div style={{textAlign:"left",padding:"20px"}}>
-//                     <div className="artist-results">
-//                         <h4>Artists</h4>
-//                     </div>
-//                     <Divider />
-//                     <div className="artist-results">
-//                         <h4>Albums</h4>
-//                     </div>
-//                     <Divider />
-//                     <div className="artist-results">
-//                         <h4>Songs</h4>   
-//                         {SongItemList}     
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }

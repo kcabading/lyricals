@@ -1,14 +1,18 @@
 import React from 'react';
-import {Card} from 'material-ui/Card';
 import {Link} from 'react-router-dom'
+import history from "../helpers/history";
+import {List, ListItem} from 'material-ui/List';
 
-export default (props) => {
+export default (props) => {  
   // build the link
-  const link = `/lyrics?link=${props.link}`;
+  const link = `/lyrics?link=${props.link}`;  
   return (
-    <Card style={{padding:"5px"}}>
-      <Link to={link}><h4 style={{margin:" 5px"}}>{props.name}</h4></Link>
-      {/* <p><a href={props.link}>{props.link}s</a></p> */}
-    </Card>
+    <List>
+      <Link to={link}>
+        <ListItem              
+          primaryText={props.name}        
+        />
+      </Link>
+    </List>
   )
 }

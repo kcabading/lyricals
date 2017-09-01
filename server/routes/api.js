@@ -64,6 +64,7 @@ router.post('/lyrics', function(req, res, next){
     // if artist not found
     if ( (objArtist = SavedData.checkArtist(objReqBody.artist) ) === undefined ) {
         console.log('artist not found')
+        console.log(objReqBody);
         // add new artist
         SAVEDDATA.data.artists.push({
             "id": shortid.generate(),
@@ -86,19 +87,17 @@ router.post('/lyrics', function(req, res, next){
     // }
 
     // if song not found
-    if ( (objSong = SavedData.checkSong(objReqBody.title) ) === undefined ) {
+    if ( (objSong = SavedData.checkSong(objReqBody.name) ) === undefined ) {
         console.log('song not found')
         // add new song 
         SAVEDDATA.data.songs.push({
             "id": shortid.generate(),
-            "name": objReqBody.title.trim(),
+            "name": objReqBody.name.trim(),
             "artist": objReqBody.artist.trim(),
             "albums": objReqBody.albums,
             "lyrics": objReqBody.lyrics
         })
-    }
-
-    
+    } 
 
     // // console.log("artist", req.body.artist)
     
@@ -110,8 +109,9 @@ router.post('/lyrics', function(req, res, next){
     let strNewData = EscapeToJson(SAVEDDATA);  
     // //Do your processing, MD5, send a satellite to the moon, etc.
     fs.writeFile (SAVEDDATA_PATH, strNewData, function(err) {
-        if (err) throw err;
-        console.log('complete');
+        if (err) throw err;       
+
+        res.json(SAVEDDATA)
     });
     
 
