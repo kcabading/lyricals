@@ -4,11 +4,13 @@ import global from './global'
 import search from './search'
 import lyrics from './lyrics'
 import saved from './saved'
+import create from './create'
 
 export default combineReducers({
   routing: routerReducer,
   global,
   search,
   lyrics,
-  saved
+  saved,
+  create
 })

@@ -4,8 +4,8 @@ import SongListItem from './SongListItem.js'
 import ArtistListItem from './SongListItem.js'
 import AlbumListItem from './SongListItem.js'
 import {connect} from 'react-redux';
-import {fetchDefault} from '../reducers/search'
-import {fetchLyrics} from '../reducers/lyrics'
+import {fetchDefault} from '../actions/search'
+import {fetchLyrics} from '../actions/lyrics'
 
 class SearchResults extends Component {    
     

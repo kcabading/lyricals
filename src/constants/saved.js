@@ -1,0 +1,4 @@
+export default {
+    FETCH_SAVED_DATA: "FETCH_SAVED_DATA",
+    DATA_FETCHED: "DATA_FETCHED"
+}

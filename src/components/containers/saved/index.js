@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Tabs, Tab} from 'material-ui/Tabs'
-import {fetchSavedData} from '../../../reducers/saved'
+import {fetchSavedData} from '../../../actions/saved'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import {List, ListItem} from 'material-ui/List';

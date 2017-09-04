@@ -4,14 +4,16 @@ import HomePage from './components/containers/home';
 import AboutPage from './components/containers/about';
 import SavedPage from './components/containers/saved';
 import LyricsPage from './components/containers/lyrics';
+import CreatePage from './components/containers/create';
 
 export default () => (
   <div>
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/about" component={AboutPage} />
-      <Route path="/saved" component={SavedPage} />
+      <Route path="/saved" component={SavedPage} />      
       <Route path="/lyrics" component={LyricsPage} />
+      <Route path="/create" component={CreatePage} />
     </Switch>  
   </div>
 );

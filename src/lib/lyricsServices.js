@@ -21,7 +21,8 @@ export const getLyrics = (url) => {
         .then(res => res.text())
 }
 
-export const saveLyrics = (data) => {    
+export const saveLyrics = (data, cb) => {    
+    
     let strPostData = EscapeToJson(data);    
     return fetch(`/api/lyrics`, { 
                 method: 'POST',

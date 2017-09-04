@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import queryString from 'query-string'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
-import {fetchLyrics,loadSavedLyrics, saveFetchedLyrics} from '../../../reducers/lyrics'
+import {fetchLyrics,loadSavedLyrics, saveFetchedLyrics} from '../../../actions/lyrics'
 
-import {loadData} from '../../../reducers/global'
+import {fetchSavedData} from '../../../actions/global'
 import CircularProgress from 'material-ui/CircularProgress'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentSave from 'material-ui/svg-icons/content/save'
@@ -38,14 +38,14 @@ class Lyrics extends Component {
             "albums": this.props.albums
         }, function(res){            
             if(res) {
-                self.props.loadData(JSON.parse(res));
+                self.props.fetchSavedData();
             }
         });
     }
 
     render() {               
 
-        let content, saveButton; 
+        let albums, content, saveButton; 
 
         const style = {
             right: "20px",
@@ -65,13 +65,18 @@ class Lyrics extends Component {
             content = (
                 <CircularProgress size={80} thickness={5} />
             )
-        } else {        
+        } else {                    
+            // do we have albums?
+            if (this.props.albums) {
+                albums = <strong>Albums: {this.props.albums.join(',')}</strong>
+            }
+
             content = (
                 <div>     
                     {saveButton}               
                     <h1>{this.props.name}</h1>
                     <p>{this.props.artist}</p>
-                    <strong>Albums: {this.props.albums.join(',')}</strong> 
+                    {albums}
                     <div dangerouslySetInnerHTML={{ __html: this.props.lyrics }}>
                     </div>                    
                 </div>
@@ -92,5 +97,5 @@ export default withRouter(connect(
         songs: state.global.data.songs,
         saved: state.lyrics.saved
     }),
-    {fetchLyrics,loadData, loadSavedLyrics,saveFetchedLyrics}
+    {fetchLyrics,fetchSavedData, loadSavedLyrics,saveFetchedLyrics}
 )(Lyrics))
