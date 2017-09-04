@@ -1,7 +1,6 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -15,13 +14,13 @@ export default (props) => {
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={props.handleClose}
+        onClick={props.closeCreate}
       />,
       <FlatButton
-        label="Submit"
+        label="Save"
         primary={true}
         keyboardFocused={true}        
-        onClick={props.handleClose}
+        onClick={props.closeCreate}
       />,
     ];
 
@@ -31,7 +30,7 @@ export default (props) => {
           actions={actions}
           modal={false}
           open={props.open}
-          onRequestClose={props.handleClose}
+          onRequestClose={props.closeCreate}
         >
           Enter lyrics here
         </Dialog>
