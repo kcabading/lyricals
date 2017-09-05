@@ -1,5 +1,3 @@
-import {getLyrics,saveLyrics} from '../lib/lyricsServices'
-import parseLyrics from '../helpers/parseLyrics'
 import CONSTANTS from '../constants/lyrics'
 
 const initState = {

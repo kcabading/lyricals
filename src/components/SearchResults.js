@@ -9,8 +9,7 @@ import {fetchLyrics} from '../actions/lyrics'
 
 class SearchResults extends Component {    
     
-    render() {              
-        
+    render() {            
         let ArtistItemList = this.props.searchResults.artists.map((song, index) => {
 
             return (
@@ -29,6 +28,7 @@ class SearchResults extends Component {
         });
         return (
             <div className="SearchResults">
+                <pre>{JSON.stringify(this.props, null, " ")}</pre>
                 <h3>Search Results</h3>
                 <Divider />
                 <div style={{textAlign:"left",padding:"20px"}}>
@@ -53,6 +53,9 @@ class SearchResults extends Component {
 }
 
 export default connect(
-    (state) => ({searchResults: state.search.searchResults}),
+    (state) => ({
+        searchResults: state.search.searchResults,
+        initLoadingLyrics: state.search.initLoadingLyrics
+    }),
     {fetchDefault,fetchLyrics}    
 )(SearchResults)

@@ -1,5 +1,3 @@
-
-import {saveLyrics} from '../lib/lyricsServices'
 import CONSTANTS from '../constants/create'
 
 const initState = {

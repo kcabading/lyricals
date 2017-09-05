@@ -1,12 +1,9 @@
-import {getDefault, searchTerm} from '../lib/lyricsServices'
-import parseHtml from '../helpers/parseHtml'
 import CONSTANTS from '../constants/search'
 
 const initState = {
     searchInput: "",
     initSearch: false,
-    initLoading: false,
-    openDrawer: false,
+    initLoading: false,    
     searchResults : {
         artists: [],
         albums: [],
@@ -21,7 +18,7 @@ export default (state = initState, action) => {
         case CONSTANTS.UPDATE_SEARCH:            
             return {...state, searchInput: action.payload, initSearch: action.payload ? true : false  }
         case CONSTANTS.LOAD_SEARCH_RESULTS:
-            return {...state, searchResults: action.payload}        
+            return {...state, searchResults: action.payload, initLoadingLyrics: false}        
         default:
             return state;            
     }
