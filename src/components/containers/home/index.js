@@ -6,7 +6,7 @@ class Home extends Component {
   
   render() {           
     return (
-        <div>
+        <div className="page home-page">
           <SearchForm />
           <SearchResults />
         </div>      

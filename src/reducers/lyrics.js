@@ -1,8 +1,6 @@
 import CONSTANTS from '../constants/lyrics'
 
-const initState = {
-    initLoadingLyrics: false,
-    lyricsLoaded: false,
+const initState = {    
     saved: false,
     name: "",
     artist: "",
@@ -14,15 +12,17 @@ export default (state = initState, action) => {
     switch (action.type) {        
         case CONSTANTS.FETCH_LYRICS:
             return {
-                ...state, 
-                initLoadingLyrics: !state.initLoadingLyrics,
+                ...state,                 
                 saved: false,
+                lyrics: "",
+                albums: [],
+                name: "",
+                artist: "",
                 lyricsLoaded: false,
             }
         case CONSTANTS.LYRICS_FETCHED:
             return {
-                ...state,                 
-                initLoadingLyrics: false,
+                ...state,                
                 lyricsLoaded: true,
                 saved: false,
                 lyrics: action.payload.lyrics,
@@ -32,8 +32,7 @@ export default (state = initState, action) => {
             }
         case CONSTANTS.SAVED_LYRICS_FETCHED:
             return {
-                ...state,                 
-                initLoadingLyrics: false,
+                ...state,                
                 lyricsLoaded: true,
                 saved: true,
                 lyrics: action.payload.lyrics,

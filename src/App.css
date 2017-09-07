@@ -27,3 +27,23 @@
 .SearchResults h4.category{
   color: #00BCD4;
 }
+
+.loading-container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    z-index: 10000; 
+}
+
+.page{
+  padding: 0px 10px
+}
+
+a{
+  text-decoration: none;
+}

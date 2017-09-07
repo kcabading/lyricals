@@ -13,7 +13,7 @@ export const fetchDefault = () => {
 export const fetchSearch = (term) => {
     console.log('TERM', term);  
     return (dispatch) => {
-        dispatch({type: CONSTANTS.UPDATE_SEARCH, payload: term})
+        dispatch({type: CONSTANTS.INIT_SEARCH, payload: term})
         searchTerm(term)
             .then(results => dispatch(loadSearchResults(parseHtml(results))))
     }

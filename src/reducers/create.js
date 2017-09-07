@@ -5,17 +5,17 @@ const initState = {
     artist: "",
     album: "",
     lyrics: "",
-    loading: false
+    success: false    
 }
 
 export default (state = initState, action) => {    
     switch (action.type) {        
         case CONSTANTS.SAVE_NEW_LYRICS:
-            return {...state, loading: true}        
+            return {...state, success: false}        
         case CONSTANTS.SAVE_NEW_LYRICS_RESPONSE:
             return {
                 ...state, 
-                loading: false
+                success: true
             }
         case CONSTANTS.FORM_CHANGE:
             let newState;

@@ -8,7 +8,8 @@ const initState = {
     },
     openDrawer: false,
     openNewLyrics: false,
-    data: {}    
+    data: {},
+    loading: false
 }
 
 export default (state = initState, action) => {    
@@ -18,7 +19,7 @@ export default (state = initState, action) => {
          case CONSTANTS.FETCH_SAVED_DATA:
             return {
                 ...state, 
-                loading: !state.loading                
+                loading: !state.loading            
             }
         case CONSTANTS.DATA_FETCHED:
             return {
@@ -35,6 +36,18 @@ export default (state = initState, action) => {
             return {
                 ...state,                                                 
                 openNewLyrics: false
+            }
+        case CONSTANTS.INIT_LOADING:
+            console.log('init loading');
+            return {
+                ...state,                                                 
+                loading: !state.loading
+            }
+        case CONSTANTS.END_LOADING:
+            console.log('end loading');
+            return {
+                ...state,                                                 
+                loading: !state.loading
             }
         default:
             return state;            

@@ -59,30 +59,22 @@ class Lyrics extends Component {
                         <ContentSave />
                     </FloatingActionButton>
             );
+        }                        
+        // do we have albums?
+        if (this.props.albums.length) {
+            albums = <strong>Albums: {this.props.albums.join(',')}</strong>
         }
-        if (!this.props.lyricsLoaded) {
-            // set circular progress
-            content = (
-                <CircularProgress size={80} thickness={5} />
-            )
-        } else {                    
-            // do we have albums?
-            if (this.props.albums) {
-                albums = <strong>Albums: {this.props.albums.join(',')}</strong>
-            }
 
-            content = (
-                <div>     
-                    {saveButton}               
-                    <h1>{this.props.name}</h1>
-                    <p>{this.props.artist}</p>
-                    {albums}
-                    <div dangerouslySetInnerHTML={{ __html: this.props.lyrics }}>
-                    </div>                    
-                </div>
-            )
-        }   
-        return content
+        return (
+            <div className="page lyrics-page">                
+                {saveButton}               
+                <h1>{this.props.name}</h1>
+                <p>{this.props.artist}</p>
+                {albums}
+                <div dangerouslySetInnerHTML={{ __html: this.props.lyrics }}>
+                </div>                    
+            </div>
+        )
     }
 }
 
@@ -92,8 +84,7 @@ export default withRouter(connect(
         artist: state.lyrics.artist,
         lyrics: state.lyrics.lyrics,
         albums: state.lyrics.albums,        
-        lyricsLoaded: state.lyrics.lyricsLoaded,
-        initLoadingLyrics: state.lyrics.initLoadingLyrics,
+        lyricsLoaded: state.lyrics.lyricsLoaded,        
         songs: state.global.data.songs,
         saved: state.lyrics.saved
     }),
