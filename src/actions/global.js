@@ -3,13 +3,13 @@ import CONSTANTS from '../constants/global'
 
 export const toggleDrawer = () => ({type: CONSTANTS.TOGGLE_MAIN_DRAWER})
 // async function to get lyrics
-export const fetchSavedData = (callback) => {
-    console.log('fetching saved data');
+export const fetchSavedData = () => {
+    console.log('fetching saved data');    
     return (dispatch) => {
         dispatch({type: CONSTANTS.FETCH_SAVED_DATA})
-        getSavedData()
-            // .then(results => dispatch(loadLyrics(parseLyrics(results))))
-            .then(response => dispatch(loadData(response)));            
+        getSavedData()            
+            .then(response => dispatch(loadData(response)))
+            .catch(err => console.log(err))
     }
 }
 

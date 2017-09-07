@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import '../../../App.css'
 import {connect} from 'react-redux'
-import {toggleDrawer, createNew, closeCreate, fetchSavedData} from '../../../actions/global'
+import {createNew, closeCreate, fetchSavedData} from '../../../actions/global'
 import {saveNewLyrics} from '../../../actions/create'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from '../../../components/common/header'
 import Footer from '../../../components/common/footer'
 import { withRouter } from 'react-router'
-import Loading from '../../common/loading'
 
 class App extends Component {
 
@@ -16,13 +15,17 @@ class App extends Component {
     this.props.fetchSavedData();
   }  
 
-  render() {           
+  onSaveNewLyrics() {
+    // trigger save
+    this.props.saveNewLyrics(this.props.create, this.props.fetchSavedData)
+  }
 
+  render() {           
+    
     return (
       <MuiThemeProvider>   
-        <div className="App">                 
-          {this.props.loading ? <Loading /> : undefined}
-          <Header {...this.props}  saveNewLyrics={this.props.saveNewLyrics.bind(this, this.props.create)}/>     
+        <div className="App">   
+          <Header {...this.props}  saveNewLyrics={this.onSaveNewLyrics.bind(this)}/>     
             <div style={{ paddingTop: 64 }}>
               {this.props.children}              
             </div>
@@ -35,11 +38,9 @@ class App extends Component {
 
 export default withRouter(connect(
     (state) => ({
-      initSearch: state.search.initSearch,
-      openDrawer: state.global.openDrawer,
+      initSearch: state.search.initSearch,      
       openNewLyrics: state.global.openNewLyrics,
-      create: state.create,
-      loading: state.global.loading
+      create: state.create      
     }),
-    {toggleDrawer, fetchSavedData, createNew, closeCreate, saveNewLyrics}
+    {fetchSavedData, createNew, closeCreate, saveNewLyrics}
 )(App))

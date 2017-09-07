@@ -94,7 +94,7 @@ router.post('/lyrics', function(req, res, next){
             "id": shortid.generate(),
             "name": objReqBody.name.trim(),
             "artist": objReqBody.artist.trim(),
-            "albums": objReqBody.albums,
+            "albums": (objReqBody.albums) ? objReqBody.albums : [],
             "lyrics": objReqBody.lyrics
         })
     } 

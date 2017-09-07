@@ -17,10 +17,6 @@ import { cyan500 } from 'material-ui/styles/colors';
 
 class SavedPage extends Component {  
 
-  handleActive(tab) {
-    alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
-  }
-
   loadSavedLyrics(index, evt){
     // load lyrics
     console.log('lyrics loaded')
@@ -29,7 +25,8 @@ class SavedPage extends Component {
   }
 
   render() {
-    console.log(this.props);    
+
+    console.log('SAVED PAGE RENDER')
     let songs,artists,albums;
 
     const iconButtonElement = (
@@ -92,19 +89,13 @@ class SavedPage extends Component {
     return (
       <Tabs>
         <Tab label="Songs" >                  
-            {songs}          
+          {songs}          
         </Tab>
         <Tab label="Artists" >          
-            {artists}          
+          {artists}          
         </Tab>
-        <Tab
-          label="Albums"
-          data-route="/home"
-          onActive={this.handleActive.bind(this)}
-        >
-          <div>
-            {albums}            
-          </div>
+        <Tab label="Albums" >          
+          {albums}                      
         </Tab>
       </Tabs>
     );

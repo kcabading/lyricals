@@ -18,13 +18,14 @@ export default (state = initState, action) => {
             return {...state, openDrawer: !state.openDrawer}        
          case CONSTANTS.FETCH_SAVED_DATA:
             return {
-                ...state, 
-                loading: !state.loading            
+                ...state                          
             }
         case CONSTANTS.DATA_FETCHED:
+
+            console.log('data fetched')
+            console.log(action.payload.data)
             return {
-                ...state,                 
-                loading: false,                
+                ...state,                             
                 data: action.payload.data
             }
         case CONSTANTS.CREATE_NEW:

@@ -6,7 +6,7 @@ export default (props) => {
   // build the link
   const link = `/lyrics?link=${props.link}`;  
   return (
-    <List>
+    <List style={{padding: "0px"}}>
       <Link to={link}>
         <ListItem              
           primaryText={props.name}        

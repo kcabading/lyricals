@@ -6,10 +6,9 @@ import {saveNewLyrics, onFormChange} from '../../../actions/create'
 
 import TextField from 'material-ui/TextField'
 import Divider from 'material-ui/Divider'
-import Paper from 'material-ui/Paper'
 
-import Loading from '../../common/loading'
 import Alert from '../../common/alert'
+import Loading from '../../common/loading'
 
 class Create extends Component {
 
@@ -26,9 +25,12 @@ class Create extends Component {
     }
 
     render() {
+
+        console.log("CREATE PAGE RENDER");
         return (
             <div className="page create-page">
-                <Alert open={this.props.success} message="Success" />
+                {this.props.loading ? <Loading /> : null}                             
+                <Alert open={this.props.success} message={this.props.message} />
                 <TextField        
                     floatingLabelText="Title"           
                     underlineShow={false}
@@ -79,7 +81,9 @@ export default withRouter(connect(
         artist: state.create.artist,
         album: state.create.album,
         lyrics: state.create.lyrics,
-        success: state.create.success
+        success: state.create.success,
+        message: state.create.message,
+        loading: state.create.loading
     }),
     {saveNewLyrics, onFormChange}
 )(Create))

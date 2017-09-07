@@ -1,21 +1,20 @@
 
 import {saveLyrics} from '../lib/lyricsServices'
-import CONSTANTS from '../constants/create'
-import GlobalConstants from '../constants/global'
+import Constants from '../constants/create'
 
-export const saveNewLyrics = (data) => {
-    
-
+export const saveNewLyrics = (data, callback) => {
 
     return (dispatch) => {
-        dispatch({type: CONSTANTS.SAVE_NEW_LYRICS})
-        dispatch({type: GlobalConstants.INIT_LOADING})
-        dispatch({type: GlobalConstants.END_LOADING})        
-        // saveLyrics(data)
-        //     .then(results => dispatch({type: CONSTANTS.SAVE_NEW_LYRICS_RESPONSE}))
-        //     .then(() => dispatch({type: GlobalConstants.END_LOADING}))
-        //     .then(() => dispatch({type: GlobalConstants.FETCH_SAVED_DATA}))
+        dispatch({type: Constants.SAVE_NEW_LYRICS})        
+        saveLyrics(data)
+            .then(results => {                
+                if (callback) {
+                    callback(null, results)
+                }
+                dispatch({type: Constants.SAVE_NEW_LYRICS_RESPONSE})                                                
+            })
+            .catch(err=> console.log(err))
     }
 }
 
-export const onFormChange = (inputType, inputValue) => ({type: CONSTANTS.FORM_CHANGE, payload: {input: inputType, value: inputValue}} )
+export const onFormChange = (inputType, inputValue) => ({type: Constants.FORM_CHANGE, payload: {input: inputType, value: inputValue}} )

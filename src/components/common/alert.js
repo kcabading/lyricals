@@ -1,6 +1,5 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import RaisedButton from 'material-ui/RaisedButton';
 
 export default class Alert extends React.Component {
 
@@ -9,8 +8,14 @@ export default class Alert extends React.Component {
         super(props);
 
         this.state = {
-            open: props.open,
+            open: false,
         };
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            open: props.open,
+        });        
     }
 
     handleRequestClose = () => {
@@ -22,7 +27,7 @@ export default class Alert extends React.Component {
     render() {
         return (
             <div>            
-                <Snackbar                    
+                <Snackbar
                     bodyStyle={{opacity:"0.8"}}
                     open={this.state.open}
                     message={this.props.message}   

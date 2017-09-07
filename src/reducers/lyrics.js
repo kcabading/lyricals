@@ -5,7 +5,10 @@ const initState = {
     name: "",
     artist: "",
     albums: [],
-    lyrics: ""
+    lyrics: "",
+    loading: false,
+    success: false,
+    message: ""
 }
 
 export default (state = initState, action) => {    
@@ -18,12 +21,14 @@ export default (state = initState, action) => {
                 albums: [],
                 name: "",
                 artist: "",
-                lyricsLoaded: false,
+                loading: true,
+                success: false,
+                message: ""
             }
         case CONSTANTS.LYRICS_FETCHED:
             return {
                 ...state,                
-                lyricsLoaded: true,
+                loading: false,
                 saved: false,
                 lyrics: action.payload.lyrics,
                 albums: action.payload.albums,
@@ -40,6 +45,19 @@ export default (state = initState, action) => {
                 name: action.payload.name,
                 artist: action.payload.artist                
             }
+        case CONSTANTS.SAVING_LYRICS:
+            return {
+                ...state,                
+                loading: true
+            }        
+        case CONSTANTS.LYRICS_SAVED:
+            return {
+                ...state,                
+                loading: false,
+                success: true,
+                saved: true,
+                message: "Lyrics saved locally"
+            }        
         default:
             return state;            
     }

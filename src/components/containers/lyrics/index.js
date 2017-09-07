@@ -5,26 +5,28 @@ import {connect} from 'react-redux'
 import {fetchLyrics,loadSavedLyrics, saveFetchedLyrics} from '../../../actions/lyrics'
 
 import {fetchSavedData} from '../../../actions/global'
-import CircularProgress from 'material-ui/CircularProgress'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentSave from 'material-ui/svg-icons/content/save'
+import ContentSave from 'material-ui/svg-icons/file/file-download'
+
+import Alert from '../../common/alert'
+import Loading from '../../common/loading'
 
 class Lyrics extends Component {      
     
     constructor(props) {
-        super(props);       
+        super(props);        
         // parse query params
         let parsedQuery = queryString.parse(this.props.location.search);
         // do we have save param
         if (parsedQuery.saved) {
             // load selected lyrics
             this.props.loadSavedLyrics(this.props.songs[parsedQuery.saved], true)
-        } 
+        }
         // do we have a link query param
         if (parsedQuery.link) {            
             // url constructor
-            let objUrl = new URL(parsedQuery.link);
-            this.props.fetchLyrics(objUrl.pathname)                      
+            let objUrl = new URL(parsedQuery.link)            
+            this.props.fetchLyrics(objUrl.pathname)
         }
     }
 
@@ -45,8 +47,8 @@ class Lyrics extends Component {
 
     render() {               
 
-        let albums, content, saveButton; 
-
+        let albums, saveButton; 
+        console.log('LYRICS RENDER')
         const style = {
             right: "20px",
             bottom: "70px",
@@ -66,8 +68,10 @@ class Lyrics extends Component {
         }
 
         return (
-            <div className="page lyrics-page">                
-                {saveButton}               
+            <div className="page lyrics-page">
+                {this.props.loading ? <Loading /> : null}
+                <Alert open={this.props.success} message={this.props.message} />
+                {saveButton}                
                 <h1>{this.props.name}</h1>
                 <p>{this.props.artist}</p>
                 {albums}
@@ -86,7 +90,10 @@ export default withRouter(connect(
         albums: state.lyrics.albums,        
         lyricsLoaded: state.lyrics.lyricsLoaded,        
         songs: state.global.data.songs,
-        saved: state.lyrics.saved
+        saved: state.lyrics.saved,
+        loading: state.lyrics.loading,
+        success: state.lyrics.success,
+        message: state.lyrics.message
     }),
     {fetchLyrics,fetchSavedData, loadSavedLyrics,saveFetchedLyrics}
 )(Lyrics))

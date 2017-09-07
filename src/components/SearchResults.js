@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import Divider from 'material-ui/Divider'
-import SongListItem from './SongListItem.js'
-import ArtistListItem from './SongListItem.js'
-import AlbumListItem from './SongListItem.js'
+import ResultListItem from './ResultListItem.js'
 import {connect} from 'react-redux';
 import {fetchDefault} from '../actions/search'
 import {fetchLyrics} from '../actions/lyrics'
@@ -22,7 +20,7 @@ class SearchResults extends Component {
             if (this.props.searchResults.artists.length) {
                 ArtistItemList = this.props.searchResults.artists.map((song, index) => {                
                     return (
-                        <ArtistListItem {...song} key={index}/>
+                        <ResultListItem {...song} key={index}/>
                     );
                 });
             } else {
@@ -31,7 +29,7 @@ class SearchResults extends Component {
             if (this.props.searchResults.albums.length) {
                 AlbumItemList = this.props.searchResults.albums.map((song, index) => {
                     return (
-                        <AlbumListItem {...song} key={index}/>
+                        <ResultListItem {...song} key={index}/>
                     );
                 });
             } else {
@@ -41,7 +39,7 @@ class SearchResults extends Component {
             if (this.props.searchResults.songs.length) {
                 SongItemList = this.props.searchResults.songs.map((song, index) => {
                     return (
-                        <SongListItem {...song} key={index} fetchLyrics={this.props.fetchLyrics}/>
+                        <ResultListItem {...song} key={index} fetchLyrics={this.props.fetchLyrics}/>
                     );
                 });
             } else {
