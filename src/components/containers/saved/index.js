@@ -41,50 +41,73 @@ class SavedPage extends Component {
         <MenuItem>Favorite</MenuItem>
         <MenuItem>Delete</MenuItem>        
       </IconMenu>
-    );
-    // do we have data?
-    if (this.props.saved.data) {
-      // do we have saved songs?
-      if (this.props.saved.data.songs) {
-        // loop through
-        songs = this.props.saved.data.songs.map((song, index)=> {          
-          // set avatar favorite
-          let FavoriteAvatar = <Avatar backgroundColor={ song.favorite ? cyan500 : "" } icon={<FavIcon />} />
-          return (
-            <div key={index}>
+    );        
+    // do we have saved songs?
+    if (this.props.songs.length) {
+      // loop through
+      songs = this.props.songs.map((song, index)=> {          
+        // set avatar favorite
+        let FavoriteAvatar = <Avatar backgroundColor={ song.favorite ? cyan500 : "" } icon={<FavIcon />} />
+        return (
+          <div key={index}>
+            <List>      
+              <ListItem
+                leftAvatar={FavoriteAvatar}                  
+                primaryText={song.name}
+                secondaryText={song.artist}
+                onClick={this.loadSavedLyrics.bind(this, index)}
+                rightIconButton={songRightIconMenu}
+              />
+            </List>
+          </div>
+        )
+      })
+    } else {
+      songs = <p>Nothing saved locally</p>
+    }
+    // do we have saved artists?
+    if (this.props.artists.length) {
+      // loop through
+      artists = this.props.artists.map((artist, index)=> {
+        return (
+          <div key={index}>
               <List>      
-                <ListItem
-                  leftAvatar={FavoriteAvatar}                  
-                  primaryText={song.name}
-                  secondaryText={song.artist}
+                <ListItem      
+                  leftAvatar={<Avatar icon={<PersonIcon />} />}
+                  primaryText={artist.name}
+                  secondaryText="No. of Albums"
                   onClick={this.loadSavedLyrics.bind(this, index)}
                   rightIconButton={songRightIconMenu}
                 />
-              </List>
-            </div>
-          )
-        })
-      }
-      // do we have saved artists?
-      if (this.props.saved.data.artists) {
-        // loop through
-        artists = this.props.saved.data.artists.map((artist, index)=> {
-          return (
-            <div key={index}>
-               <List>      
-                  <ListItem      
-                    leftAvatar={<Avatar icon={<PersonIcon />} />}
-                    primaryText={artist.name}
-                    secondaryText="No. of Albums"
-                    onClick={this.loadSavedLyrics.bind(this, index)}
-                    rightIconButton={songRightIconMenu}
-                  />
-              </List>              
-            </div>
-          )
-        })
-      }
+            </List>              
+          </div>
+        )
+      })
+    } else {
+      artists = <p>Nothing saved locally</p>
     }
+
+    // do we have saved albums?
+    if (this.props.albums.length) {
+      // loop through
+      albums = this.props.albums.map((album, index)=> {
+        return (
+          <div key={index}>
+              <List>      
+                <ListItem      
+                  leftAvatar={<Avatar icon={<PersonIcon />} />}
+                  primaryText={album.name}
+                  secondaryText="No. of Albums"
+                  onClick={this.loadSavedLyrics.bind(this, index)}
+                  rightIconButton={songRightIconMenu}
+                />
+            </List>              
+          </div>
+        )
+      })
+    } else {
+      albums = <p>Nothing saved locally</p>
+    }  
     
     return (
       <Tabs>
@@ -104,7 +127,9 @@ class SavedPage extends Component {
 
 export default withRouter(connect(
     (state) => ({
-      saved: state.global
+      songs: state.global.data.songs,
+      artists: state.global.data.artists,
+      albums: state.global.data.albums,
     }),
     {fetchSavedData}
 )(SavedPage))

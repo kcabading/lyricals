@@ -17,6 +17,9 @@ class SearchResults extends Component {
             ArtistItemList = AlbumItemList = SongItemList =  <LinearProgress mode="indeterminate" />
         } else {
 
+            console.log('SEARCH RESULTS');
+            console.log(this.props)
+
             if (this.props.searchResults.artists.length) {
                 ArtistItemList = this.props.searchResults.artists.map((song, index) => {                
                     return (

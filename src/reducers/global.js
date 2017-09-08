@@ -8,7 +8,11 @@ const initState = {
     },
     openDrawer: false,
     openNewLyrics: false,
-    data: {},
+    data: {
+        songs: [],
+        albums: [],
+        artists: []
+    },
     loading: false
 }
 
