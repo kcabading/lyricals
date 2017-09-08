@@ -43,7 +43,9 @@ export default (state = initState, action) => {
                 lyrics: action.payload.lyrics,
                 albums: action.payload.albums,
                 name: action.payload.name,
-                artist: action.payload.artist                
+                artist: action.payload.artist,
+                success: false,
+                message: ""
             }
         case CONSTANTS.SAVING_LYRICS:
             return {

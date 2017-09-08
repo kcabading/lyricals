@@ -10,6 +10,14 @@ import Divider from 'material-ui/Divider'
 import Alert from '../../common/alert'
 import Loading from '../../common/loading'
 
+const inputStyle = {
+    height: "50px"
+}
+
+const labelStyle = {
+    top: "25px"
+}
+
 class Create extends Component {
 
     constructor(props) {
@@ -33,7 +41,9 @@ class Create extends Component {
                 <Alert open={this.props.success} message={this.props.message} />
                 <TextField        
                     floatingLabelText="Title"           
+                    floatingLabelStyle={labelStyle}
                     underlineShow={false}
+                    style={inputStyle}
                     fullWidth={true}                        
                     ref={(c) => (this.els.name = c)}
                     value = {this.props.name}
@@ -42,7 +52,9 @@ class Create extends Component {
                 <Divider />
                 <TextField        
                     floatingLabelText="Artist"
+                    floatingLabelStyle={labelStyle}
                     underlineShow={false}
+                    style={inputStyle}
                     fullWidth={true}                        
                     ref={(c) => (this.els.artist = c)}
                     value = {this.props.artist}
@@ -51,7 +63,9 @@ class Create extends Component {
                 <Divider />
                 <TextField
                     floatingLabelText="Album"
+                    floatingLabelStyle={labelStyle}
                     underlineShow={false}
+                    style={inputStyle}
                     fullWidth={true}                        
                     ref={(c) => (this.els.album = c)}
                     value = {this.props.album}
@@ -60,6 +74,7 @@ class Create extends Component {
                 <Divider />
                 <TextField
                     hintText="Enter Lyrics Here"
+                    floatingLabelStyle={labelStyle}
                     underlineShow={false}
                     multiLine={true}
                     rows={10}

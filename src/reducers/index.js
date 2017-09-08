@@ -6,6 +6,7 @@ import more from './more'
 import lyrics from './lyrics'
 import saved from './saved'
 import create from './create'
+import settings from './settings'
 
 export default combineReducers({
   routing: routerReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   more,
   lyrics,
   saved,
-  create
+  create,
+  settings
 })

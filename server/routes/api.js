@@ -26,7 +26,7 @@ router.get('/search', function(req, res, next) {
         qs: {
             q: req.param('q')
         }
-    }        
+    }
     // start request
     request(options)  
         .then( function (response) {            
@@ -44,7 +44,9 @@ router.get('/lyrics', function(req, res, next) {
     const options = {  
         method: 'GET',
         uri: AZLYRICS + req.param('p')        
-    }    
+    }
+    console.log('GETTING LYRICS')
+    console.log(options)
     // start request
     request(options)  
         .then( function (response) {

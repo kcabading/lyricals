@@ -2,7 +2,8 @@ import React from 'react';
 import {List, ListItem} from 'material-ui/List';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
+import IconStar from 'material-ui/svg-icons/toggle/star';
+import IconSettings from 'material-ui/svg-icons/action/settings';
 
 import Divider from 'material-ui/Divider';
 import ActionInfo from 'material-ui/svg-icons/action/info';
@@ -21,7 +22,8 @@ export default (props) => (
             <List>
                 <Link to='/' onClick={props.toggleDrawer} ><ListItem primaryText="Home" leftIcon={<ActionHome />} /></Link>
                 <Link to='/saved' onClick={props.toggleDrawer} ><ListItem primaryText="Saved" leftIcon={<ContentInbox />} /></Link>
-                <Link to='/saved?favorites=true' onClick={props.toggleDrawer}><ListItem primaryText="Favorites" leftIcon={<ActionGrade />} /></Link>
+                <Link to='/saved?favorites=true' onClick={props.toggleDrawer}><ListItem primaryText="Favorites" leftIcon={<IconStar />} /></Link>
+                <Link to='/settings' onClick={props.toggleDrawer}><ListItem primaryText="Settings" leftIcon={<IconSettings />} /></Link>
             </List>
             <Divider />
             <List>                                
