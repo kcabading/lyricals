@@ -32,16 +32,16 @@ export default (state = initState, action) => {
                 ...state,                             
                 data: action.payload.data
             }
-        case CONSTANTS.CREATE_NEW:
-            return {
-                ...state,                     
-                openNewLyrics: true
-            }
-        case CONSTANTS.CREATE_NEW_CLOSE:
-            return {
-                ...state,                                                 
-                openNewLyrics: false
-            }
+        // case CONSTANTS.CREATE_NEW:            
+        //     return {
+        //         ...state,                     
+        //         openNewLyrics: true
+        //     }
+        // case CONSTANTS.CREATE_NEW_CLOSE:
+        //     return {
+        //         ...state,                                                 
+        //         openNewLyrics: false
+        //     }
         case CONSTANTS.INIT_LOADING:
             console.log('init loading');
             return {

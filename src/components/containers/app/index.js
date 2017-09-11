@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../../../App.css'
 import {connect} from 'react-redux'
-import {createNew, closeCreate, fetchSavedData} from '../../../actions/global'
+import {fetchSavedData} from '../../../actions/global'
 import {saveNewLyrics} from '../../../actions/create'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from '../../../components/common/header'
@@ -20,8 +20,7 @@ class App extends Component {
     this.props.saveNewLyrics(this.props.create, this.props.fetchSavedData)
   }
 
-  render() {           
-    
+  render() {
     return (
       <MuiThemeProvider>   
         <div className="App">   
@@ -42,5 +41,5 @@ export default withRouter(connect(
       openNewLyrics: state.global.openNewLyrics,
       create: state.create      
     }),
-    {fetchSavedData, createNew, closeCreate, saveNewLyrics}
+    {fetchSavedData, saveNewLyrics}
 )(App))
