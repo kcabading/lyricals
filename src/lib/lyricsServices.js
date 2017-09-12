@@ -27,6 +27,29 @@ export const getLyrics = (url) => {
         .then(res => res.text())
 }
 
+export const asyncSetAsFavorite = (id) => {
+    
+    return fetch(`/api/lyrics/favorite/$id}`, { 
+                method: 'POST',                
+                headers: new Headers({                     
+                    "Content-type": "application/json",
+                })
+            })
+            .then(res => res.json())
+}
+
+export const asyncDeleteLyrics = (id) => {
+    
+    return fetch(`/api/lyrics/${id}`, { 
+                method: 'DELETE',                
+                headers: new Headers({                     
+                    "Content-type": "application/json",
+                })     
+            })
+            .then(res => res.json())
+}
+
+
 export const saveLyrics = (data, cb) => {    
     
     let strPostData = EscapeToJson(data);    

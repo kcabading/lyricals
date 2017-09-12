@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import SearchForm from '../../SearchForm.js'
-import SearchResults from '../../SearchResults.js'
+import SearchForm from './SearchForm.js'
+import SearchResults from './SearchResults.js'
 import {fetchDefault,fetchSearch} from '../../../actions/search'
 import {fetchLyrics} from '../../../actions/lyrics'
 

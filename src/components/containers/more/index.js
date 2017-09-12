@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {loadMoreSearchResults} from '../../../actions/more'
 import Loading from '../../common/loading'
 
-import ResultListItem from '../../ResultListItem.js'
+import ResultListItem from '../home/ResultListItem.js'
 
 class MoreSearch extends Component {  
 

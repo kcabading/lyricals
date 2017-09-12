@@ -21,7 +21,8 @@ export default (props) => {
     <List style={{padding: "0px"}}>
       <Link to={link}>
         <ListItem              
-          primaryText={props.name}        
+          primaryText={props.name}
+          style={{padding: "0px"}}      
         />
       </Link>
     </List>

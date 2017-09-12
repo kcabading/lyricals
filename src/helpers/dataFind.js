@@ -8,7 +8,6 @@ module.exports = {
         return SAVEDDATA.data.artists.find(function (artist) {
             return artist.name == artistName.trim();
         });
-
     },
 
     checkAlbum: function(albumName){

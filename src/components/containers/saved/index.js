@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Tabs, Tab} from 'material-ui/Tabs'
-import {fetchSavedData} from '../../../actions/saved'
+import {fetchSavedData, setAsFavorite, deleteLyrics} from '../../../actions/saved'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import {List, ListItem} from 'material-ui/List';
@@ -24,13 +24,14 @@ class SavedPage extends Component {
     this.props.history.push(`/lyrics?saved=${index}`)
   }
 
-  setAsFavorite(index, evt) {
-    console.log('setting favorite at index ' + index)
+  onSetAsFavorite(id, evt) {
+    console.log('setting favorite at index ' + id)    
+    this.props.setAsFavorite(id)
   }
 
-  deleteLyrics(index, evt) {
-
-    console.log('deleting lyrics at index ' + index)
+  onDeleteLyrics(id, evt) {
+    console.log('deleting lyrics at index ' + id)
+    this.props.deleteLyrics(id)
   }
 
   render() {
@@ -54,13 +55,13 @@ class SavedPage extends Component {
         // set button
         songRightIconMenu = (
           <IconMenu iconButtonElement={iconButtonElement}>
-            <MenuItem onClick={this.setAsFavorite.bind(this, song.id)}>Favorite</MenuItem>
-            <MenuItem onClick={this.deleteLyrics.bind(this, song.id)}>Delete</MenuItem>        
+            <MenuItem onClick={this.onSetAsFavorite.bind(this, song.id)}>Favorite</MenuItem>
+            <MenuItem onClick={this.onDeleteLyrics.bind(this, song.id)}>Delete</MenuItem>        
           </IconMenu>
         );
         return (
           <div key={index}>
-            <List>      
+            <List style={{padding: "0px"}}>      
               <ListItem
                 leftAvatar={FavoriteAvatar}                  
                 primaryText={song.name}
@@ -141,5 +142,5 @@ export default withRouter(connect(
       artists: state.global.data.artists,
       albums: state.global.data.albums,
     }),
-    {fetchSavedData}
+    {fetchSavedData, setAsFavorite, deleteLyrics}
 )(SavedPage))

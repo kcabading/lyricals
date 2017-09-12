@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux';
 
 import Divider from 'material-ui/Divider'
 import ResultListItem from './ResultListItem.js'
