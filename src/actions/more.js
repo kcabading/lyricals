@@ -1,18 +1,13 @@
 import Constants from '../constants/more'
+import {getMoreResults} from '../lib/lyricsServices'
+import parseMoreResults from '../helpers/parseMoreResults'
 
 // search page
-// export const loadSearchResults = (results) => ({type: CONSTANTS.LOAD_SEARCH_RESULTS, payload: results})
-// export const fetchDefault = () => {
-//     return (dispatch) => {
-//         getDefault()
-//             .then(titles => dispatch(loadSearchResults(titles)))
-//     }
-// }
-export const loadMoreSearchResults = (query) => {
-    console.log('MORE RESULTS', query);
+export const loadSearchResults = (results) => ({type: Constants.LOAD_MORE_RESULTS_RESPONSE, payload: results})
+export const loadMoreSearchResults = (query) => {    
     return (dispatch) => {
         dispatch({type: Constants.LOAD_MORE})
-        // searchTerm(term)
-        //     .then(results => dispatch(loadSearchResults(parseHtml(results))))
+        getMoreResults(query)
+            .then(results => dispatch(loadSearchResults(parseMoreResults(results))))
     }
 }

@@ -15,6 +15,12 @@ export const searchTerm = (term) => {
         .then(res => res.text())
 }
 
+export const getMoreResults = (query) => {
+    console.log('getting more results');
+    return fetch(`/api/moreresults` + query )
+        .then(res => res.text())
+}
+
 export const getLyrics = (url) => {
     console.log('getting lyrics for: ' + url);
     return fetch(`/api/lyrics?p=` + encodeURI(url))

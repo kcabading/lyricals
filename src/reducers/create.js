@@ -1,4 +1,4 @@
-import CONSTANTS from '../constants/create'
+import Constants from '../constants/create'
 
 const initState = {
     name: "",
@@ -10,47 +10,59 @@ const initState = {
     loading: false
 }
 
-export default (state = initState, action) => {    
+export default (state = initState, action) => {
     switch (action.type) {        
-        case CONSTANTS.SAVE_NEW_LYRICS:
+        case Constants.SAVE_NEW_LYRICS:
             return {
                 ...state, 
                 success: false, 
                 message: "",
                 loading: true
             }
-        case CONSTANTS.SAVE_NEW_LYRICS_RESPONSE:
+        case Constants.SAVE_NEW_LYRICS_RESPONSE:
             return {
                 ...state, 
                 success: true,
                 message: "Lyrics Saved",
-                loading: false
+                loading: false,
+                name: "",
+                artist: "",
+                album: "",
+                lyrics: ""
             }
-        case CONSTANTS.FORM_CHANGE:
+        case Constants.FORM_CHANGE:
             let newState;
             switch(action.payload.input) {
                 case "name":
                     newState = {
                         ...state, 
-                        name: action.payload.value
+                        name: action.payload.value,
+                        success: false, 
+                        message: "",
                     }
                     break;
                 case "artist":
                     newState = {
                         ...state, 
-                        artist: action.payload.value
+                        artist: action.payload.value,
+                        success: false, 
+                        message: "",
                     }
                     break;
                 case "album":
                     newState = {
                         ...state, 
-                        album: [action.payload.value]
+                        album: [action.payload.value],
+                        success: false, 
+                        message: "",
                     }
                     break;
                 case "lyrics":
                     newState = {
                         ...state, 
-                        lyrics: action.payload.value
+                        lyrics: action.payload.value,
+                        success: false, 
+                        message: "",
                     }
                     break;
                 default:

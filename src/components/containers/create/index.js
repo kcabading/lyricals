@@ -33,8 +33,7 @@ class Create extends Component {
     }
 
     render() {
-
-        console.log("CREATE PAGE RENDER");
+        
         return (
             <div className="page create-page">
                 {this.props.loading ? <Loading /> : null}                             

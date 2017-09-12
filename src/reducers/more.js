@@ -4,12 +4,14 @@ const initState = {
     query: "",
     type: "",
     page: "",
+    results: [],
     loading: false
 }
 
 export default (state = initState, action) => {    
     switch (action.type) {        
-        case Constants.LOAD_MORE:      
+        case Constants.LOAD_MORE: 
+            console.log('LOAD MORE')
             return {
                 ...state, 
                 query: "",
@@ -25,6 +27,13 @@ export default (state = initState, action) => {
                 page: action.payload.page,
                 loading: false
             }
+        case Constants.LOAD_MORE_RESULTS_RESPONSE:  
+        console.log('LOAD SEARCH MORE')          
+            return {
+                ...state,
+                results: action.payload,
+                loading: false
+            }        
         default:
             return state;            
     }
