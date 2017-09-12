@@ -12,13 +12,13 @@ const SavedData = require('../../src/helpers/dataFind')
 const EscapeToJson = require('../../src/helpers/escapeStringToJson')
 
 // GET saved data
-router.get('/saved', function(req, res, next) {    
+router.get('/saved', function(req, res) {    
     // return json data
     res.json(SAVEDDATA)
 });
 
 /* GET search azlyrics. */
-router.get('/search', function(req, res, next) {
+router.get('/search', function(req, res) {
 	// initalise options
     const options = {  
         method: 'GET',
@@ -38,8 +38,33 @@ router.get('/search', function(req, res, next) {
         })
 });
 
+/* GET MORE SEARCH RESULTS */
+router.get('/moreresults', function(req, res) {
+    console.log(req.query)
+	// initalise options
+    const options = {  
+        method: 'GET',
+        uri: AZSEARCH,
+        qs: req.query
+    }
+    console.log('MORE RESULTS OPTIONS')
+    console.log(options)
+    // start request
+    request(options)  
+        .then( function (response) {  
+            
+            console.log("MORE RESULTS RESPONSE")
+            res.send(response)
+            // Request was successful, use the response object at will
+        })
+        .catch(function (err) {
+            // Something bad happened, handle the error
+        })
+});
+
+
 /* GET lyrics. */
-router.get('/lyrics', function(req, res, next) {    
+router.get('/lyrics', function(req, res) {    
 	// initalise options
     const options = {  
         method: 'GET',
@@ -59,7 +84,7 @@ router.get('/lyrics', function(req, res, next) {
 });
 
 
-router.post('/lyrics', function(req, res, next){   
+router.post('/lyrics', function(req, res){   
     // get request body
     const objReqBody = req.body;
     let objArtist, arAlbums, objSong;

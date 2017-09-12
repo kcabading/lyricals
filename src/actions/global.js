@@ -1,6 +1,5 @@
 import {getSavedData} from '../lib/lyricsServices'
 import Constants from '../constants/global'
-import ConstantsCreate from '../constants/create'
 
 export const toggleDrawer = () => ({type: Constants.TOGGLE_MAIN_DRAWER})
 // async function to get lyrics

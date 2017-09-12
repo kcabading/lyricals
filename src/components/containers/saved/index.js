@@ -24,30 +24,40 @@ class SavedPage extends Component {
     this.props.history.push(`/lyrics?saved=${index}`)
   }
 
+  setAsFavorite(index, evt) {
+    console.log('setting favorite at index ' + index)
+  }
+
+  deleteLyrics(index, evt) {
+
+    console.log('deleting lyrics at index ' + index)
+  }
+
   render() {
 
     console.log('SAVED PAGE RENDER')
-    let songs,artists,albums;
-
+    let songs, artists, albums, songRightIconMenu, FavoriteAvatar
+    // set icon buton
     const iconButtonElement = (
       <IconButton
         touch={true}
       >
         <MoreVertIcon color={grey400} />
       </IconButton>
-    );
-    const songRightIconMenu = (
-      <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem>Favorite</MenuItem>
-        <MenuItem>Delete</MenuItem>        
-      </IconMenu>
     );        
     // do we have saved songs?
     if (this.props.songs.length) {
       // loop through
-      songs = this.props.songs.map((song, index)=> {          
-        // set avatar favorite
-        let FavoriteAvatar = <Avatar backgroundColor={ song.favorite ? cyan500 : "" } icon={<FavIcon />} />
+      songs = this.props.songs.map((song, index)=> {      
+        // set favorite
+        FavoriteAvatar = <Avatar backgroundColor={ song.favorite ? cyan500 : "" } icon={<FavIcon />} />
+        // set button
+        songRightIconMenu = (
+          <IconMenu iconButtonElement={iconButtonElement}>
+            <MenuItem onClick={this.setAsFavorite.bind(this, song.id)}>Favorite</MenuItem>
+            <MenuItem onClick={this.deleteLyrics.bind(this, song.id)}>Delete</MenuItem>        
+          </IconMenu>
+        );
         return (
           <div key={index}>
             <List>      

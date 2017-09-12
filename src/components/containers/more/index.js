@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import {loadMoreSearchResults} from '../../../actions/more'
 import Loading from '../../common/loading'
 
+import ResultListItem from '../../ResultListItem.js'
+
 class MoreSearch extends Component {  
 
     constructor(props) {
@@ -16,21 +18,26 @@ class MoreSearch extends Component {
         if (parsedQuery.q && parsedQuery.w && parsedQuery.p) {
             // load selected lyrics
             this.props.loadMoreSearchResults(this.props.location.search)
-        }
-        // // do we have a link query param
-        // if (parsedQuery.link) {            
-        //     // url constructor
-        //     let objUrl = new URL(parsedQuery.link)            
-        //     this.props.fetchLyrics(objUrl.pathname)
-        // }
+        }        
     }
 
     render() {
         console.log("MORE RENDER");
+        console.log(this.props)
+
+        let MoreList;
+
+        if (this.props.results.length) {
+
+            MoreList = this.props.results.map( (song, index) => {
+                return <ResultListItem {...song} key={index}/>
+            })            
+        }
+
         return (
-            <div className="page search-page">
-                {this.props.loading ? <Loading /> : null}
-                <p>Loading more results</p>
+            <div className="page more-page">
+                {this.props.loading ? <Loading /> : null}            
+                {MoreList}
             </div>
         );
     }
@@ -41,6 +48,7 @@ export default withRouter(connect(
         query: state.more.query,
         type: state.more.type,
         page: state.more.page,
+        results: state.more.results,
         loading: state.more.loading
     }),
     {loadMoreSearchResults}

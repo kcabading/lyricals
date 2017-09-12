@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux';
+
 import Divider from 'material-ui/Divider'
 import ResultListItem from './ResultListItem.js'
-import {connect} from 'react-redux';
-import {fetchDefault} from '../actions/search'
-import {fetchLyrics} from '../actions/lyrics'
 import LinearProgress from 'material-ui/LinearProgress';
 
 class SearchResults extends Component {    
@@ -75,10 +74,4 @@ class SearchResults extends Component {
     }
 }
 
-export default connect(
-    (state) => ({
-        searchResults: state.search.searchResults,
-        initLoadingLyrics: state.search.initLoadingLyrics
-    }),
-    {fetchDefault,fetchLyrics}    
-)(SearchResults)
+export default SearchResults

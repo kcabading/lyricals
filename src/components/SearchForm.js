@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
-import {connect} from 'react-redux'
-import {fetchSearch} from '../actions/search'
-
 
 class SearchForm extends Component {  
   onFormSubmit(evt) {
@@ -27,7 +24,4 @@ class SearchForm extends Component {
   }
 }
 
-export default connect(
-  (state) => ({searchInput: state.searchInput}),
-  {fetchSearch}  
-)(SearchForm)
+export default SearchForm;
