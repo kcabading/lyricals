@@ -51,7 +51,7 @@ router.get('/moreresults', function(req, res) {
         uri: AZSEARCH,
         qs: req.query,
         headers: {
-            'Connection': 'keep-alive'
+            'User-Agent': 'Chrome/59.0.3071.115'
         }
     }
     console.log('MORE RESULTS OPTIONS')
@@ -78,7 +78,7 @@ router.get('/lyrics', function(req, res) {
         method: 'GET',
         uri: AZLYRICS + req.param('p'),
         headers: {
-            'Connection': 'keep-alive'
+            'User-Agent': 'Chrome/59.0.3071.115'
         }
     }
     console.log('GETTING LYRICS')
