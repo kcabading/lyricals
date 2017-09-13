@@ -25,9 +25,6 @@ router.get('/search', function(req, res) {
         uri: AZSEARCH,
         qs: {
             q: req.param('q')
-        },
-        headers: {
-            'Connection': 'keep-alive'
         }
     }
     // start request
@@ -49,10 +46,7 @@ router.get('/moreresults', function(req, res) {
     const options = {  
         method: 'GET',
         uri: AZSEARCH,
-        qs: req.query,
-        headers: {
-            'User-Agent': 'Chrome/59.0.3071.115'
-        }
+        qs: req.query
     }
     console.log('MORE RESULTS OPTIONS')
     console.log(options)
@@ -76,17 +70,14 @@ router.get('/lyrics', function(req, res) {
 	// initalise options
     const options = {  
         method: 'GET',
-        uri: AZLYRICS + req.param('p'),
-        headers: {
-            'User-Agent': 'Chrome/59.0.3071.115'
-        }
+        uri: AZLYRICS + req.param('p')        
     }
     console.log('GETTING LYRICS')
     console.log(options)
     // start request
     request(options)  
         .then( function (response) {
-            res.send(response)
+            res.end(response)
             // Request was successful, use the response object at will
         })
         .catch(function (err) {
