@@ -35,6 +35,7 @@ router.get('/search', function(req, res) {
         })
         .catch(function (err) {
             // Something bad happened, handle the error
+            console.log("ERROR SEARCHING", err)
         })
 });
 
@@ -59,6 +60,7 @@ router.get('/moreresults', function(req, res) {
         })
         .catch(function (err) {
             // Something bad happened, handle the error
+            console.log(err);
         })
 });
 
@@ -80,6 +82,8 @@ router.get('/lyrics', function(req, res) {
         })
         .catch(function (err) {
             // Something bad happened, handle the error
+            console.log('ERROR GETTING LYRICS')
+            console.log(err)
         })
 });
 
