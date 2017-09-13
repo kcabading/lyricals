@@ -3,9 +3,9 @@ const EscapeToJson = require('../helpers/escapeStringToJson')
 
 var myInit = { 
     method: 'GET',
-    headers: new Headers({ 
-        "Access-Control-Allow-Origin": '*', 
+    headers: new Headers({        
         "Content-type": "text/json",
+        "Connection": "keep-alive"
     })     
 }
 
@@ -17,13 +17,13 @@ export const searchTerm = (term) => {
 
 export const getMoreResults = (query) => {
     console.log('getting more results');
-    return fetch(`/api/moreresults` + query )
+    return fetch(`/api/moreresults` + query, myInit )
         .then(res => res.text())
 }
 
 export const getLyrics = (url) => {
     console.log('getting lyrics for: ' + url);
-    return fetch(`/api/lyrics?p=` + encodeURI(url))
+    return fetch(`/api/lyrics?p=` + encodeURI(url), myInit)
         .then(res => res.text())
 }
 
