@@ -19,8 +19,8 @@ app.on('connection', function(socket) {
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 app.use(cors())
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
