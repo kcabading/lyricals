@@ -77,7 +77,7 @@ router.get('/lyrics', function(req, res) {
     // start request
     request(options)  
         .then( function (response) {
-            res.end(response)
+            res.send(response)
             // Request was successful, use the response object at will
         })
         .catch(function (err) {
