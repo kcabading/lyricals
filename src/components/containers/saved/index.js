@@ -49,7 +49,7 @@ class SavedPage extends Component {
     // do we have saved songs?
     if (this.props.songs.length) {
       // loop through
-      songs = this.props.songs.map((song, index)=> {      
+      songs = this.props.songs.map((song, index)=> {
         // set favorite
         FavoriteAvatar = <Avatar backgroundColor={ song.favorite ? cyan500 : "" } icon={<FavIcon />} />
         // set button

@@ -29,7 +29,7 @@ export const getLyrics = (url) => {
 
 export const asyncSetAsFavorite = (id) => {
     
-    return fetch(`/api/lyrics/favorite/$id}`, { 
+    return fetch(`/api/lyrics/favorite/${id}`, { 
                 method: 'POST',                
                 headers: new Headers({                     
                     "Content-type": "application/json",
