@@ -1,4 +1,3 @@
-
 const EscapeToJson = require('../helpers/escapeStringToJson')
 
 var myInit = { 
@@ -38,7 +37,7 @@ export const asyncSetAsFavorite = (id) => {
             .then(res => res.json())
 }
 
-export const asyncDeleteLyrics = (id) => {
+export const asyncDeleteSong = (id) => {
     
     return fetch(`/api/lyrics/${id}`, { 
                 method: 'DELETE',                
@@ -50,8 +49,7 @@ export const asyncDeleteLyrics = (id) => {
 }
 
 
-export const saveLyrics = (data, cb) => {    
-    
+export const saveLyrics = (data, cb) => {
     let strPostData = EscapeToJson(data);    
     return fetch(`/api/lyrics`, { 
                 method: 'POST',

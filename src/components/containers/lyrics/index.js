@@ -4,7 +4,7 @@ import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import {fetchLyrics,loadSavedLyrics, saveFetchedLyrics} from '../../../actions/lyrics'
 
-import {fetchSavedData} from '../../../actions/global'
+import {fetchSavedData} from '../../../actions/saved'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentSave from 'material-ui/svg-icons/file/file-download'
 

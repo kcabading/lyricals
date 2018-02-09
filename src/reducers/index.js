@@ -7,6 +7,7 @@ import lyrics from './lyrics'
 import saved from './saved'
 import create from './create'
 import settings from './settings'
+import alert from './alert'
 
 export default combineReducers({
   routing: routerReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   lyrics,
   saved,
   create,
-  settings
+  settings,
+  alert
 })

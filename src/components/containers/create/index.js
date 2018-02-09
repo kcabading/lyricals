@@ -7,8 +7,8 @@ import {saveNewLyrics, onFormChange} from '../../../actions/create'
 import TextField from 'material-ui/TextField'
 import Divider from 'material-ui/Divider'
 
-import Alert from '../../common/alert'
-import Loading from '../../common/loading'
+// import Alert from '../../common/alert'
+// import Loading from '../../common/loading'
 
 const inputStyle = {
     height: "50px"
@@ -36,8 +36,8 @@ class Create extends Component {
         
         return (
             <div className="page create-page">
-                {this.props.loading ? <Loading /> : null}                             
-                <Alert open={this.props.success} message={this.props.message} />
+                {/* {this.props.loading ? <Loading /> : null}                             
+                <Alert open={this.props.success} message={this.props.message} /> */}
                 <TextField        
                     floatingLabelText="Title"           
                     floatingLabelStyle={labelStyle}
@@ -97,7 +97,7 @@ export default withRouter(connect(
         lyrics: state.create.lyrics,
         success: state.create.success,
         message: state.create.message,
-        loading: state.create.loading
+        // loading: state.create.loading
     }),
     {saveNewLyrics, onFormChange}
 )(Create))

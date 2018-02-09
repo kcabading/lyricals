@@ -1,34 +1,51 @@
 import React, { Component } from 'react'
 import '../../../App.css'
 import {connect} from 'react-redux'
-import {fetchSavedData} from '../../../actions/global'
+import { withRouter } from 'react-router'
+
+import {fetchSavedData} from '../../../actions/saved'
 import {saveNewLyrics} from '../../../actions/create'
+import {showAlert} from '../../../actions/global'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from '../../../components/common/header'
 import Footer from '../../../components/common/footer'
-import { withRouter } from 'react-router'
+import Alert from '../../common/alert'
+
 
 class App extends Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props)
     // load initial data
     this.props.fetchSavedData();
-  }  
+  }
 
   onSaveNewLyrics() {
     // trigger save
-    this.props.saveNewLyrics(this.props.create, this.props.fetchSavedData)
+    this.props.saveNewLyrics(this.props.create, (err, response) => {
+      if (err) throw err;
+      console.log('callback called')
+      // show alert
+      this.props.showAlert('success','Successfully Saved')
+      // this.props.fetchSavedData()
+    })
   }
 
   render() {
+
+    console.log("APP RENDER")
+    console.log(this.props)
+
     return (
       <MuiThemeProvider>   
-        <div className="App">   
-          <Header {...this.props}  saveNewLyrics={this.onSaveNewLyrics.bind(this)}/>     
-            <div style={{ paddingTop: 64 }}>
+        <div className="App">
+          <Alert open={this.props.alert} message={this.props.alertMessage} />
+          <Header {...this.props}  saveNewLyrics={this.onSaveNewLyrics.bind(this)}/>
+            <div style={{ paddingTop: 64 }}>              
               {this.props.children}              
             </div>
-          {/* <Footer /> */}
+          {/* <Footer /> */}   
         </div>        
       </MuiThemeProvider>
     );
@@ -37,9 +54,12 @@ class App extends Component {
 
 export default withRouter(connect(
     (state) => ({
-      initSearch: state.search.initSearch,      
-      openNewLyrics: state.global.openNewLyrics,
-      create: state.create      
+      // initSearch: state.search.initSearch,
+      // openNewLyrics: state.global.openNewLyrics,
+      data: state.global.data,
+      create: state.create,      
+      loading: state.global.loading,
+      loadingMessage: state.global.loadingMessage  
     }),
-    {fetchSavedData, saveNewLyrics}
+    {fetchSavedData, saveNewLyrics, showAlert}
 )(App))

@@ -41,7 +41,11 @@
 }
 
 .page{
-  padding: 0px 10px
+  padding: 0px;
+}
+
+.create-page{
+  padding: 0px 10px;
 }
 
 .more-page{

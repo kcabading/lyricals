@@ -89,16 +89,24 @@ router.get('/lyrics', function(req, res) {
 
 /* POST set favorite lyrics. */
 router.post('/lyrics/favorite/:id', function(req, res) {
-	// initalise options    
-    console.log('SETTING FAVORITE')
-    console.log(req.params)    
     // get song index
-    SavedData.setAsFavorite(req.params.id, function() {        
+    SavedData.setAsFavorite(req.params.id, function(err, data) {
+        // if error
+        if (err) throw err
         // send response
         res.json(SAVEDDATA)
     });
 });
 
+router.delete('/lyrics/:id',  function(req, res) {
+    // get song index
+    SavedData.deleteSong(req.params.id, function(err, data) {
+        // if error
+        if (err) throw err
+        // send response
+        res.json(SAVEDDATA)
+    });
+})
 
 router.post('/lyrics', function(req, res){   
     // get request body

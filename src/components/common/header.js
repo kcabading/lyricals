@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import AppBar from 'material-ui/AppBar'
 import MainDrawer from './MainDrawer.js'
 import FlatButton from 'material-ui/FlatButton';
-import Dialog from '../form/dialog'
+// import Dialog from '../form/dialog'
 
 import {toggleDrawer} from '../../actions/global'
 
@@ -33,7 +33,7 @@ class Header extends Component {
                 iconElementRight={headerButton}
                 style={{ position: "fixed" }}
                 />            
-                <Dialog open={this.props.openNewLyrics} closeCreate={this.props.closeCreate}/> 
+                {/* <Dialog open={this.props.openNewLyrics} closeCreate={this.props.closeCreate}/>  */}
                 <MainDrawer toggleDrawer={this.props.toggleDrawer} open={this.props.openDrawer}/>
             </div>
         )

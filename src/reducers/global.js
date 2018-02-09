@@ -1,4 +1,4 @@
-import CONSTANTS from '../constants/global'
+import Constants from '../constants/global'
 
 const initState = {
     name: "Kristian Cabading",
@@ -13,24 +13,32 @@ const initState = {
         albums: [],
         artists: []
     },
-    loading: false
+    loading: false,
+    loadingMessage: "",
+    alert: false,
+    alertMessage: ""
 }
 
 export default (state = initState, action) => {    
     switch (action.type) {        
-        case CONSTANTS.TOGGLE_MAIN_DRAWER:
+        case Constants.TOGGLE_MAIN_DRAWER:
             return {...state, openDrawer: !state.openDrawer}        
-         case CONSTANTS.FETCH_SAVED_DATA:
+         case Constants.FETCH_SAVED_DATA:
             return {
                 ...state                          
             }
-        case CONSTANTS.DATA_FETCHED:
+        case Constants.DATA_FETCHED:
 
             console.log('data fetched')
-            console.log(action.payload.data)
+            console.log({
+                ...state,                             
+                songs: action.payload.songs,
+                artists: action.payload.artists,
+                albums: action.payload.albums,
+            })
             return {
                 ...state,                             
-                data: action.payload.data
+                data: action.payload                    
             }
         // case CONSTANTS.CREATE_NEW:            
         //     return {
@@ -42,17 +50,31 @@ export default (state = initState, action) => {
         //         ...state,                                                 
         //         openNewLyrics: false
         //     }
-        case CONSTANTS.INIT_LOADING:
+        case Constants.INIT_LOADING:
             console.log('init loading');
             return {
                 ...state,                                                 
                 loading: !state.loading
             }
-        case CONSTANTS.END_LOADING:
+        case Constants.END_LOADING:
             console.log('end loading');
             return {
                 ...state,                                                 
                 loading: !state.loading
+            }
+        case Constants.SHOW_ALERT:
+            console.log('reducer showing alert')
+            return {
+                ...state,
+                alert: true,
+                alertMessage: action.payload
+            }
+        case Constants.HIDE_ALERT:
+            console.log('reducer hiding alert')
+            return {
+                ...state,
+                alert: false,
+                alertMessage: ""
             }
         default:
             return state;            

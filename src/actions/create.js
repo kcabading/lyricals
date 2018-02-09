@@ -1,8 +1,7 @@
 import {saveLyrics} from '../lib/lyricsServices'
 import Constants from '../constants/create'
 
-export const saveNewLyrics = (data, callback) => {
-
+export const saveNewLyrics = (data, callback) => {    
     return (dispatch) => {
         dispatch({type: Constants.SAVE_NEW_LYRICS})        
         saveLyrics(data)
